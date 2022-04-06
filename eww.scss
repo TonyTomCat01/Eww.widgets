@@ -1,0 +1,72 @@
+* {
+    all: unset;
+    font-family: "FantasqueSansMono Nerd Font";
+}
+
+.Bar {
+    background-color: #121212;
+}
+
+.RamMod {
+    background-color: #121212;
+}
+
+.DateMod {
+    background-color: #121212;
+}
+
+.CpuMod {
+    background-color: #121212;
+}
+
+.LaunchMod {
+    background-color: #121212;
+}
+
+
+.time {
+    color: #d35d68;
+}
+
+.launcher {
+    font-size: 14px;
+
+    button {
+        transition: 0.3s;
+        margin: 0px 17px;
+
+        &:hover {
+            transition: 0.5s; 
+            opacity: 0.8;
+        }
+    }
+}
+
+.ram scale trough {
+	all: unset;
+	background-color: #4e4e4e;
+	border-radius: 50px;
+	min-height: 8px;
+    min-width: 100px;
+    margin-top: 0px;
+    margin-left: 17px;
+}
+
+.ram scale trough highlight {
+  all: unset;
+	background-color: #21f4a4;
+	color: #fff;
+	border-radius: 10px;
+}
+
+.cpulabel {
+  font-size: 18px;
+  color: #21e4a4;
+  margin-left: 20px;
+}
+
+.ramlabel {
+  font-size: 18px;
+  color: #21e4a4;
+  margin-left: 20px;
+}
