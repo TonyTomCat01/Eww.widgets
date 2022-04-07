@@ -1,10 +1,13 @@
+(defpoll net :interval "1s" 
+  "script/wifi")
+
 (defpoll time :interval "1s"
   `date | awk '{print "   "$4" "$5}'`)
 
 (defpoll r :interval "2s"
   `free -m | grep Mem | awk '{print ($3/$2)*100}'`)
 
-(defpoll cpu :interval "7s"
+(defpoll cpu :interval "4s"
   `iostat | awk 'FNR == 4 {print}' | awk '{print $1}'`)
 
 ; Widgets
@@ -23,6 +26,11 @@
     (box :class "cpulabel" "   ")
     (label :show_truncated true :class "cpu" :text {cpu + " %"})))
 
+(defwidget wifi []
+  (box :space-evenly "false" :class "wifi"
+    (button :onclick "iwgtk" :timeout "300s" :class "wifilabel" "   ")
+    (label :text net)))
+
 (defwidget launcher []
   (box :class "launcher"
     (button 
@@ -37,10 +45,7 @@
       :onclick "st"         "")
     (button 
       :style "color: #8c1ad9; font-size: 14px;"
-      :onclick "nautilus"   "")
-    (button 
-      :style "color: #c91e57; font-size: 22px;"
-      :onclick "goneovim"   "")))
+      :onclick "nautilus"   "")))
 
 ; Main Bar Widget
 
@@ -80,7 +85,7 @@
   (Ram))
 
 
-(defwindow DateMod
+(defwindow TimeMod
   :geometry (geometry
               :width "150px"
               :height "30px"
@@ -118,3 +123,16 @@
   :windowtype "dock"
   :wm-ignore true
   (launcher))
+
+(defwindow NetMod
+  :geometry (geometry
+              :width "180px"
+              :height "30px"
+              :x "17%"
+              :y "1%"
+              :anchor "top left")
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore true
+  (wifi))

@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+iwctl station wlan0 show | grep "network" | sed "s/\Connected network //"  | awk '{$1=$1};1'

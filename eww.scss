@@ -11,7 +11,7 @@
     background-color: #121212;
 }
 
-.DateMod {
+.TimeMod {
     background-color: #121212;
 }
 
@@ -19,7 +19,16 @@
     background-color: #121212;
 }
 
+.NetMod {
+    background-color: #121212;
+}
+
+
 .LaunchMod {
+    background-color: #121212;
+}
+
+.MusicMod {
     background-color: #121212;
 }
 
@@ -37,6 +46,8 @@
 
         &:hover {
             transition: 0.5s; 
+            text-shadow: 0px 0px 5px #f5f5f5;
+            font-size: 20px;
             opacity: 0.8;
         }
     }
@@ -59,13 +70,20 @@
 	border-radius: 10px;
 }
 
+
 .cpulabel {
+  font-size: 18px;
+  color: #ebba34;
+  margin-left: 20px;
+}
+
+.ramlabel {
   font-size: 18px;
   color: #21e4a4;
   margin-left: 20px;
 }
 
-.ramlabel {
+.wifilabel {
   font-size: 18px;
   color: #21e4a4;
   margin-left: 20px;
