@@ -1,0 +1,5 @@
+#!/usr/bin/fish
+
+while true
+    xcolor
+end

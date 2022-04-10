@@ -4,10 +4,13 @@
 (defpoll time :interval "1s"
   `date | awk '{print "   "$4" "$5}'`)
 
-(defpoll r :interval "2s"
+(defpoll r :interval "1s"
   `free -m | grep Mem | awk '{print ($3/$2)*100}'`)
 
-(defpoll cpu :interval "4s"
+(defpoll fs :interval "60s"
+  `df -h | grep sda | awk '{print $3"/"$2}'`)
+
+(defpoll cpu :interval "1s"
   `iostat | awk 'FNR == 4 {print}' | awk '{print $1}'`)
 
 ; Widgets
@@ -24,7 +27,13 @@
 (defwidget cpu []
   (box :space-evenly "false"
     (box :class "cpulabel" "   ")
-    (label :show_truncated true :class "cpu" :text {cpu + " %"})))
+    (label :class "cpu" :text {cpu + " %"})))
+
+
+(defwidget fs []
+  (box :space-evenly "false"
+    (button :onclick "filelight &" :class "fslabel" "   ")
+    (label :class "cpu" :text {fs + "  "})))
 
 (defwidget wifi []
   (box :space-evenly "false" :class "wifi"
@@ -35,17 +44,16 @@
   (box :class "launcher"
     (button 
       :style "color: #bf271f; font-size: 18px;"
-      :onclick "dmenu_path | rofi -dmenu -theme ~/.config/rofi/dmenu/launcher.rasi" "異") 
+      :onclick "dmenu_path | rofi -show drun -theme ~/.config/rofi/default/launcher.rasi" "異") 
     (button 
       :style "color: #db3d3d; font-size: 14px;"
-      :onclick "firefox"    "")
+      :onclick "script/color &"    "")
     (button 
-      :timeout "none"
       :style "color: #1fcf68; font-size: 18px;"
-      :onclick "st"         "")
+      :onclick "st &"         "")
     (button 
       :style "color: #8c1ad9; font-size: 14px;"
-      :onclick "nautilus"   "")))
+      :onclick "flameshot gui &"   "")))
 
 ; Main Bar Widget
 
@@ -102,7 +110,7 @@
   :geometry (geometry
               :width "120px"
               :height "30px"
-              :x "-18%"
+              :x "-17%"
               :y "1%"
               :anchor "top right")
   :stacking "fg"
@@ -136,3 +144,16 @@
   :windowtype "dock"
   :wm-ignore true
   (wifi))
+
+(defwindow FsMod
+  :geometry (geometry
+              :width "120px"
+              :height "30px"
+              :x "17%"
+              :y "1%"
+              :anchor "top center")
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore true
+  (fs))
