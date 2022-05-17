@@ -7,7 +7,7 @@
 (defpoll r :interval "1s"
   `free -m | grep Mem | awk '{print ($3/$2)*100}'`)
 
-(defpoll fs :interval "60s"
+(defpoll fs :interval "40s"
   `df -h | grep sda | awk '{print $3"/"$2}'`)
 
 (defpoll cpu :interval "1s"
@@ -26,13 +26,13 @@
 
 (defwidget cpu []
   (box :space-evenly "false"
-    (box :class "cpulabel" "   ")
+    (box :class "cpulabel" "  ")
     (label :class "cpu" :text {cpu + " %"})))
 
 
 (defwidget fs []
   (box :space-evenly "false"
-    (button :onclick "filelight &" :class "fslabel" "   ")
+    (button :onclick "baobab &" :class "fslabel" "   ")
     (label :class "cpu" :text {fs + "  "})))
 
 (defwidget wifi []
@@ -44,10 +44,10 @@
   (box :class "launcher"
     (button 
       :style "color: #bf271f; font-size: 18px;"
-      :onclick "dmenu_path | rofi -show drun -theme ~/.config/rofi/default/launcher.rasi" "異") 
+      :onclick "rofi -show drun -theme ~/.config/rofi/launcher.rasi | sh" "異") 
     (button 
       :style "color: #db3d3d; font-size: 14px;"
-      :onclick "script/color &"    "")
+      :onclick "bash /usr/local/bin/pick"    "")
     (button 
       :style "color: #1fcf68; font-size: 18px;"
       :onclick "st &"         "")
